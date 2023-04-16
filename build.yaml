@@ -20,4 +20,5 @@ include:
   # - board: adv360pro_right
   - board: nice_nano_v2
     shield: corne_left nice_view_adapter nice_view
+  - board: nice_nano_v2
     shield: corne_right nice_view_adapter nice_view
