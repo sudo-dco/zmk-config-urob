@@ -1,5 +1,4 @@
 /* source keypos definitions */
-#include "../zmk-nodefree-config/helper.h"
 #include "../zmk-nodefree-config/keypos_def/keypos_36keys.h"
 
 /* activate bluetooth */
@@ -7,25 +6,3 @@
 
 /* source the main keymap */
 #include "base.keymap"
-
-/* left-hand HRMs */
-ZMK_BEHAVIOR(hml, hold_tap,
-    flavor = "balanced";
-    tapping-term-ms = <280>;
-    quick-tap-ms = <175>;                // repeat on tap-into-hold
-    global-quick-tap-ms = <150>;         // requires PR #1387
-    bindings = <&kp>, <&kp>;
-    hold-trigger-key-positions = <KEYS_R THUMBS>;
-    hold-trigger-on-release;             // delay positional check until key-release
-)
-
-/* right-hand HRMs */
-ZMK_BEHAVIOR(hmr, hold_tap,
-    flavor = "balanced";
-    tapping-term-ms = <280>;
-    quick-tap-ms = <175>;                // repeat on tap-into-hold
-    global-quick-tap-ms = <150>;         // requires PR #1387
-    bindings = <&kp>, <&kp>;
-    hold-trigger-key-positions = <KEYS_L THUMBS>;
-    hold-trigger-on-release;             // delay positional check until key-release
-)
