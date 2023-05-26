@@ -1,0 +1,12 @@
+# Copyright (c) 2022 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+if SHIELD_KEEZYBOOST
+
+config ZMK_KEYBOARD_NAME
+    default "keezyboost"
+
+config ZMK_USB
+	default y
+
+endif

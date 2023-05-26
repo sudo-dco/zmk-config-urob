@@ -76,8 +76,8 @@ done
 [[ -z $ZEPHYR_VERSION ]] && ZEPHYR_VERSION="3.2"
 [[ -z $RUNWITH_DOCKER ]] && RUNWITH_DOCKER="true"
 
-[[ -z $OUTPUT_DIR ]] && OUTPUT_DIR="$WINHOME/Downloads"
-[[ -z $LOG_DIR ]] && LOG_DIR="/tmp"
+[[ -z $OUTPUT_DIR ]] && OUTPUT_DIR="$HOME/zmk-builds"
+[[ -z $LOG_DIR ]] && LOG_DIR="$HOME/zmk-builds/tmp"
 
 [[ -z $HOST_ZMK_DIR ]] && HOST_ZMK_DIR="$HOME/zmk"
 [[ -z $HOST_CONFIG_DIR ]] && HOST_CONFIG_DIR="$HOME/zmk-config"
@@ -90,7 +90,7 @@ done
 [[ -z $CLEAR_CACHE ]] && CLEAR_CACHE="false"
 
 DOCKER_IMG="zmkfirmware/zmk-dev-arm:$ZEPHYR_VERSION"
-DOCKER_BIN="$SUDO podman"
+DOCKER_BIN="$SUDO docker"
 
 # +-------------------------+
 # | AUTOMATE CONFIG OPTIONS |
