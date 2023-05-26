@@ -122,6 +122,7 @@ ZMK_BEHAVIOR(num_dance, tap_dance,
 )
 &num_word {  // num-word, requires PR #1441
     layers = <NUM>;
+    continue-list = <BSPC DEL DOT COMMA PLUS MINUS STAR FSLH EQUAL>;
 };
 
 // smart-mouse, requires PR #1366
@@ -223,8 +224,8 @@ ZMK_BEHAVIOR(copy_cut, tap_dance,
 
 // Windows sleep key
 ZMK_BEHAVIOR(win_sleep, macro,
-    wait-ms = <100>;
-    tap-ms = <5>;
+    wait-ms = <500>;
+    tap-ms = <50>;
     bindings = <&kp LG(X) &kp U &kp S>;
 )
 
