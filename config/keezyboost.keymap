@@ -1,8 +1,9 @@
+#include "../zmk-nodefree-config/helper.h"
+
 /* source keypos definitions */
-#include "../zmk-nodefree-config/keypos_def/keypos_40keys.h"
+#include "../zmk-nodefree-config/keypos_def/keypos_36keys.h"
 
 /* map Planck's extra keys */
 
 /* source the main keymap */
 #include "base.keymap"
-

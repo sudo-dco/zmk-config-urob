@@ -6,7 +6,4 @@ if SHIELD_KEEZYBOOST
 config ZMK_KEYBOARD_NAME
     default "keezyboost"
 
-config ZMK_USB
-	default y
-
 endif
