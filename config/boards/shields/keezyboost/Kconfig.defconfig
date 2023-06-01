@@ -6,4 +6,17 @@ if SHIELD_KEEZYBOOST
 config ZMK_KEYBOARD_NAME
     default "keezyboost"
 
+if ZMK_DISPLAY
+
+config SPI
+    default y
+
+config ST7735R
+    default y
+
+config SSD1306_REVERSE_MODE
+    default y
+
+endif # ZMK_DISPLAY
+
 endif
