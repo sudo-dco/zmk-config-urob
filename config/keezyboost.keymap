@@ -1,9 +1,11 @@
 #include "../zmk-nodefree-config/helper.h"
 
 /* source keypos definitions */
-#include "keypos_40keys.h"
+#include "../zmk-nodefree-config/keypos_def/keypos_36keys.h"
 
 /* map Planck's extra keys */
+#define X_LH  &none   &none &smart_mouse  // thumb row, left
+#define X_RH  &bs_del &none &none         // thumb row, right
 
 /* source the main keymap */
 #include "base.keymap"
