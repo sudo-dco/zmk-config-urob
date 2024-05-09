@@ -7,7 +7,10 @@ manifest:
   projects:
     - name: zmk
       remote: urob
-      revision: main-with-native-mouse
+      revision: main
       import: app/west.yml
+    - name: zmk-helpers
+      remote: urob
+      revision: v2
   self:
     path: config
