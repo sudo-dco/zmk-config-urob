@@ -1,5 +1,5 @@
-/* source keypos definitions */
-#include "../../../../zmk-nodefree-config/keypos_def/keypos_36keys.h"
+/* source key position labels */
+#include "zmk-helpers/key-labels/36.h"
 
 /* map Zen's extra keys */
 #define X_LH  &smart_mouse  // thumb row, left
@@ -12,12 +12,7 @@
 #include "base.keymap"
 
 /* use 5-column layout for Zen */
-/ { 
-    chosen { 
-        zephyr,display = &oled;
-        zmk,matrix_transform = &five_column_transform; 
-    }; 
-};
+ZMK_APPLY_MATRIX_TRANSFORM(five_column_transform)
 
 &pro_micro_i2c {
     status = "okay";
