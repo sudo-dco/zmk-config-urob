@@ -1,3 +1,9 @@
+// #include <dt-bindings/pinctrl/rpi-pico-rp2040-pinctrl.h>
+// #include <rpi_pico/rp2040.dtsi>
+// #include <raspberrypi/rpi_pico/rp2040.dtsi>
+#include "rpi_pico-common.dtsi"
+#include "../common/rpi_pico-led.dtsi"
+
 &pinctrl {
 	spi0_default: spi0_default {
 		group1 {
@@ -21,11 +27,22 @@
 	// };
 };
 
+&gpio0 {
+	status = "okay";
+};
+
+// &spi0 {
+// 	clock-frequency = <DT_FREQ_M(8)>;
+// 	status = "okay";
+// 	pinctrl-0 = <&spi0_default>;
+// 	pinctrl-names = "default";
+// };
+
 &spi0 {
+	compatible = "raspberrypi,rp2040";
 	status = "okay";
 	cs-gpios = <&gpio0 17 GPIO_ACTIVE_LOW>;
 	pinctrl-0 = <&spi0_default>;
-
 	st7789v: st7789v@0 {
 		compatible = "sitronix,st7789v";
 		spi-max-frequency = <10000000>;
@@ -135,6 +152,11 @@
         zephyr,display = &st7789v;
         zmk,display-led = &led0;
     };
+	
+     aliases {
+             led0 = &myled0;
+     };
+
     leds {
 		compatible = "gpio-leds";
 		led0: led_0 {
