@@ -9,6 +9,8 @@ config ZMK_KEYBOARD_NAME
 config SPI
     default y
 
+endif
+
 if ZMK_DISPLAY
 
 # config ST7735R
@@ -58,6 +60,4 @@ endif # ZMK_DISPLAY
 #     default LV_COLOR_DEPTH_1
 # endchoice
 
-endif # LVGL
-
-endif
+# endif # LVGL
