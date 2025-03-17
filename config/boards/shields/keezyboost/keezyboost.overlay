@@ -1,16 +1,23 @@
-#include <dt-bindings/pinctrl/rpi-pico-rp2040-pinctrl.h>
 #include <dt-bindings/zmk/matrix_transform.h>
 
 / {
     chosen {
         zephyr,display = &st7789v;
+        zmk,display-led = &led0;
         zmk,kscan = &kscan0;
+        zmk,physical-layout = &physical_layout0;
         zmk,matrix_transform = &default_transform;
+    };
+
+    physical_layout0: physical_layout_0 {
+        compatible = "zmk,physical-layout";
+        display-name = "Default Layout";
+        kscan = <&kscan0>;
+        transform = <&default_transform>;
     };
 
     kscan0: kscan_0 {
         compatible = "zmk,kscan-gpio-matrix";
-        label = "KSCAN";
         diode-direction = "col2row";
 
         col-gpios
@@ -47,11 +54,11 @@
     };
 };
 
-&spi0 {
+&pico_spi {
     compatible = "raspberrypi,pico-spi", "arm,pl022";
 	status = "okay";
-	cs-gpios = <&gpio0 17 GPIO_ACTIVE_LOW>;
-    pinctrl-0 = <&spi0_default>;
+	// cs-gpios = <&gpio0 17 GPIO_ACTIVE_LOW>;
+
 	st7789v: st7789v@0 {
 		compatible = "sitronix,st7789v";
         spi-max-frequency = <10000000>;

@@ -1,6 +1,7 @@
+#include <dt-bindings/pinctrl/rpi-pico-rp2040-pinctrl.h>
+
 / {
     chosen {
-        // zephyr,display = &st7735r;
         zephyr,display = &st7789v;
     };
 }
@@ -9,42 +10,8 @@
     // compatible = "raspberrypi,pico-spi", "arm,pl022";
 	status = "okay";
 	cs-gpios = <&gpio0 17 GPIO_ACTIVE_LOW>;
-
-	st7789v: st7789v@0 {
-		compatible = "sitronix,st7789v";
-		cmd-data-gpios = <&gpio0 16 GPIO_ACTIVE_LOW>;
-		reset-gpios = <&gpio0 14 GPIO_ACTIVE_LOW>;
-		width = <128>;
-		height = <160>;
-	};
+    pinctrl-0 = <&spi0_default>;
+    pinctrl-names = "default";
 };
 
-// &spi0 {
-// 	status = "okay";
-// 	cs-gpios = <&gpio0 17 GPIO_ACTIVE_LOW>;
-// 	pinctrl-0 = <&spi0_default>;
-//     st7735r: st7735r@0 {
-//         compatible = "sitronix,st7735r";
-//         spi-max-frequency = <10000000>;
-//         reg = <0>;
-//         cmd-data-gpios = <&gpio0 16 GPIO_ACTIVE_LOW>;
-//         reset-gpios = <&gpio0 15 GPIO_ACTIVE_LOW>;
-//         width = <128>;
-//         height = <160>;
-//         x-offset = <0>;
-//         y-offset = <0>;
-//         madctl = <0x60>;
-//         colmod = <0x55>;
-//         vmctr1 = <0x0e>;
-//         pwctr1 = [a2 02 84];
-//         pwctr2 = [c5];
-//         pwctr3 = [0a 00];
-//         pwctr4 = [8a 2a];
-//         pwctr5 = [8a ee];
-//         frmctr1 = [01 2c 2d];
-//         frmctr2 = [01 2c 2d];
-//         frmctr3 = [01 2c 2d 01 2c 2d];
-//         gamctrp1 = [02 1c 07 12 37 32 29 2d 29 25 2b 39 00 01 03 10];
-//         gamctrn1 = [03 1d 07 06 2e 2c 29 2d 2e 2e 37 3f 00 00 02 10];
-//     };
-// };
+pico_spi: &spi0 {};

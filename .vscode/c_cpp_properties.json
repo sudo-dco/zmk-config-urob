@@ -1,0 +1,23 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": []
+        },
+        {
+            "name": "zmk",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "intelliSenseMode": "linux-gcc-arm",
+            "compileCommands": [
+                "${workspaceFolder}/zmk/app/build/compile_commands.json"
+            ]
+        }
+    ],
+    "version": 4
+}
