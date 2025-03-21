@@ -1,17 +1,65 @@
-#include <dt-bindings/pinctrl/rpi-pico-rp2040-pinctrl.h>
+#include <zephyr/dt-bindings/pinctrl/rpi-pico-rp2040-pinctrl.h>
 
-/ {
-    chosen {
-        zephyr,display = &st7789v;
-    };
-}
+
+&pinctrl {
+	spi0_default: spi0_default {
+		group1 {
+			pinmux = <SPI0_CSN_P17>, <SPI0_SCK_P18>, <SPI0_TX_P19>;
+		};
+		group2 {
+			pinmux = <SPI0_RX_P16>;
+			input-enable;
+		};
+	};
+};
 
 &spi0 {
-    // compatible = "raspberrypi,pico-spi", "arm,pl022";
+	compatible = "raspberrypi,pico-spi", "arm,pl022";
 	status = "okay";
 	cs-gpios = <&gpio0 17 GPIO_ACTIVE_LOW>;
     pinctrl-0 = <&spi0_default>;
     pinctrl-names = "default";
+
+
+    st7789v: st7789v@0 {
+		compatible = "sitronix,st7789v";
+        spi-max-frequency = <10000000>;
+        reg = <0>;
+		cmd-data-gpios = <&gpio0 16 GPIO_ACTIVE_LOW>;
+		reset-gpios = <&gpio0 14 GPIO_ACTIVE_LOW>;
+		width = <128>;
+		height = <160>;
+        x-offset = <2>;
+        y-offset = <1>;
+        vcom = <0x19>;
+		gctrl = <0x35>;
+		vrhs = <0x12>;
+		vdvs = <0x20>;
+		mdac = <0xC0>;
+		lcm = <0x2c>;
+		colmod = <0x05>;
+		gamma = <0x01>;
+		porch-param = [ 0c 0c 00 33 33  ];
+		cmd2en-param = [ 5a 69 02 01  ];
+		pwctrl1-param = [ a4 a1  ];
+		pvgam-param = [ D0 04 0D 11 13 2B 3F 54 4C 18 0D 0B 1F 23  ];
+		nvgam-param = [ D0 04 0C 11 13 2C 3F 44 51 2F 1F 1F 20 23  ];
+		ram-param = [ 00 F0  ];
+		rgb-param = [ CD 08 14  ];
+	};
 };
 
-pico_spi: &spi0 {};
+/ {
+	chosen {
+		zephyr,display = &st7789v;
+		zmk,display-led = &led0;
+	};
+
+	leds {
+		compatible = "gpio-leds";
+		led0: led_0 {
+			gpios = <&gpio0 15 GPIO_ACTIVE_HIGH>;
+			label = "LED";
+		};
+	};
+};

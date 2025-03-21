@@ -13,15 +13,6 @@ endif
 
 if ZMK_DISPLAY
 
-# config ST7735R
-#    default y
-
-config ST7789V
-    default y
-
-# config ST7789V_RGB565
-#     default y
-
 choice ZMK_DISPLAY_WORK_QUEUE
     default ZMK_DISPLAY_WORK_QUEUE_DEDICATED
 endchoice
@@ -42,6 +33,9 @@ endchoice
 choice LV_COLOR_DEPTH
     default LV_COLOR_DEPTH_16
 endchoice
+
+# config LV_MEM_SIZE
+#     default (48U * 1024U) 
 
 endif # ZMK_DISPLAY
 

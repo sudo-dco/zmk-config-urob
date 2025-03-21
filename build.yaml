@@ -26,3 +26,4 @@ include:
   #  shield: settings_reset
   - board: rpi_pico
     shield: keezyboost
+    # snippet: zmk-usb-logging
