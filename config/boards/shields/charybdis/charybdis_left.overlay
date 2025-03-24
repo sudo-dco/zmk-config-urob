@@ -5,7 +5,7 @@
  */
 
 #include "charybdis.dtsi"
-// #include "charybdis_pmw3610.dtsi"
+#include "charybdis_pmw3610.dtsi"
 
 &kscan0 {	
 	col-gpios
@@ -22,4 +22,4 @@
 // 	  compatible = "zmk,input-listener";
 // 	  device = <&trackball>;
 // 	};
-//   };
+// };

@@ -5,16 +5,16 @@
  */
  
 #include "charybdis.dtsi"
-// #include "charybdis_pmw3610.dtsi"
+#include "charybdis_pmw3610.dtsi"
           
 
 &default_transform {
 	col-offset = <5>;
 };
 
-// &five_column_transform {
-// 	col-offset = <5>;
-// };
+&five_column_transform {
+	col-offset = <5>;
+};
 
 &kscan0 {	
 	col-gpios
@@ -34,16 +34,15 @@
     status = "okay";
 };
 
-&trackball_listener {
-    compatible = "zmk,input-listener";
-    status = "okay";
-    device = <&trackball>;
-};
+// &trackball_listener {
+//     compatible = "zmk,input-listener";
+//     device = <&trackball>;
+// };
 
-// / {
-//     trackball_listener {
-//       compatible = "zmk,input-listener";
-//       device = <&trackball>;
-//     };
-//   };
+/ {
+    trackball_listener {
+    	compatible = "zmk,input-listener";
+    	device = <&trackball>;
+    };
+};
 

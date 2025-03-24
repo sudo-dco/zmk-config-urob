@@ -6,6 +6,18 @@
                 "${workspaceFolder}/**"
             ],
             "defines": []
+        },
+        {
+            "name": "ZMK",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "intelliSenseMode": "linux-gcc-arm",
+            "compileCommands": [
+                "${workspaceFolder}/app/build/compile_commands.json"
+            ],
+            "compilerPath": "/nix/store/4viqyxy7nfd3nxw9zcqxy1j6gqcbg2lc-zephyr-sdk-0.16.9/"
         }
     ],
     "version": 4
