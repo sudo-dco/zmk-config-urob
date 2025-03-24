@@ -173,3 +173,4 @@ draw_config:
   append_colon_to_layer_header: false
   dark_mode: auto
   footer_text: "urob/zmk-config"
+  svg_extra_style: "base.css"

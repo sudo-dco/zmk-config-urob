@@ -1,0 +1,49 @@
+/*
+ * Copyright (c) 2020 ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+ 
+#include "charybdis.dtsi"
+// #include "charybdis_pmw3610.dtsi"
+          
+
+&default_transform {
+	col-offset = <5>;
+};
+
+// &five_column_transform {
+// 	col-offset = <5>;
+// };
+
+&kscan0 {	
+	col-gpios
+		= <&pro_micro 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+		, <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+		, <&pro_micro 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+		, <&pro_micro 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+		, <&pro_micro 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+		;
+};
+
+&spi0 {
+    status = "okay";
+};
+
+&trackball {
+    status = "okay";
+};
+
+&trackball_listener {
+    compatible = "zmk,input-listener";
+    status = "okay";
+    device = <&trackball>;
+};
+
+// / {
+//     trackball_listener {
+//       compatible = "zmk,input-listener";
+//       device = <&trackball>;
+//     };
+//   };
+
