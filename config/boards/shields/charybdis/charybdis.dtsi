@@ -1,4 +1,5 @@
 #include <dt-bindings/zmk/matrix_transform.h>
+#include <physical_layouts.dtsi>
 // #include <dt-bindings/input/input-event-codes.h>
 
 // #define INPUT_EV_KEY 0x01               /**< Key event */
@@ -62,7 +63,7 @@
 / {
     chosen {
         zmk,kscan = &kscan0;
-        zmk,matrix_transform = &five_column_transform;
+        zmk,matrix_transform = &default_transform;
         // zmk,physical-layout = &physical_layout0;
     }; 
 
@@ -70,23 +71,38 @@
 	    compatible = "zmk,battery-nrf-vddh";
     };
 
-    // physical_layout0: physical_layout_0 { // First physical layout, use different naming for other layouts
-    //     compatible = "zmk,physical-layout";
-    //     display-name = "Default Layout";
-    //     kscan = <&kscan0>; // Label of the kscan node, optional if all layouts use the same
-    //     transform = <&default_transform>; // Label of the matrix transform for this layout
-    // };
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+        diode-direction = "row2col";
+        wakeup-source;
+
+        col-gpios
+            = <&pro_micro 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // col 1 = D19
+            , <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // col 2 = D20
+            , <&pro_micro 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // col 3 = D10
+            , <&pro_micro 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // col 4 = D6
+            , <&pro_micro 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // col 5 = D7
+            , <&pro_micro 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // col 6 = D8
+            ;
+
+        row-gpios
+            = <&pro_micro 18 GPIO_ACTIVE_HIGH> //row 1 = &pro_micro 21 
+            , <&pro_micro 5 GPIO_ACTIVE_HIGH> // row 2 = &pro_micro 18
+            , <&pro_micro 4 GPIO_ACTIVE_HIGH> // row 3 = &pro_micro 8
+            , <&pro_micro 9 GPIO_ACTIVE_HIGH> // row 4 = &pro_micro 7
+            ;                                 // row 5 = D9
+    };
           
     default_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
-        columns = <12>;
+        columns = <10>;
         rows = <4>;
 
         map = <
-	RC(0,0) RC(0,1) RC(0,2) RC(0,3) RC(0,4) RC(0,5)  RC(0,11) RC(0,10) RC(0,9) RC(0,8) RC(0,7) RC(0,6)
-	RC(1,0) RC(1,1) RC(1,2) RC(1,3) RC(1,4) RC(1,5)  RC(1,11) RC(1,10) RC(1,9) RC(1,8) RC(1,7) RC(1,6)
-	RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)  RC(2,11) RC(2,10) RC(2,9) RC(2,8) RC(2,7) RC(2,6)
-							RC(3,3) RC(3,4) RC(3,1)  RC(3,7)  RC(3,9)
+        RC(0,0) RC(0,1) RC(0,2) RC(0,3) RC(0,4) RC(0,9) RC(0,8) RC(0,7) RC(0,6) RC(0,5) 
+        RC(1,0) RC(1,1) RC(1,2) RC(1,3) RC(1,4) RC(1,9) RC(1,8) RC(1,7) RC(1,6) RC(1,5) 
+        RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,9) RC(2,8) RC(2,7) RC(2,6) RC(2,5) 
+                        RC(3,2) RC(3,3) RC(3,4) RC(3,9) RC(3,8)
         >;
     };
 
@@ -96,25 +112,57 @@
     //     rows = <4>;
 
     //     map = <
-	// RC(0,1) RC(0,2) RC(0,3) RC(0,4) RC(0,5)  RC(0,10) RC(0,9) RC(0,8) RC(0,7) RC(0,6)
-	// RC(1,1) RC(1,2) RC(1,3) RC(1,4) RC(1,5)  RC(1,10) RC(1,9) RC(1,8) RC(1,7) RC(1,6)
-	// RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)  RC(2,10) RC(2,9) RC(2,8) RC(2,7) RC(2,6)
-	// 				RC(3,3) RC(3,4) RC(3,1)  RC(3,6)  RC(3,8)
+    //         RC(0,1) RC(0,2) RC(0,3) RC(0,4) RC(0,5)  RC(0,10) RC(0,9) RC(0,8) RC(0,7) RC(0,6)
+    //         RC(1,1) RC(1,2) RC(1,3) RC(1,4) RC(1,5)  RC(1,10) RC(1,9) RC(1,8) RC(1,7) RC(1,6)
+    //         RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)  RC(2,10) RC(2,9) RC(2,8) RC(2,7) RC(2,6)
+    //                         RC(3,3) RC(3,4) RC(3,1)  RC(3,6)  RC(3,8)
     //     >;
     // };
-	
-    kscan0: kscan {
-        compatible = "zmk,kscan-gpio-matrix";
-        diode-direction = "row2col";
-        wakeup-source;
 
-        row-gpios
-            = <&pro_micro 18 GPIO_ACTIVE_HIGH>
-            , <&pro_micro 5 GPIO_ACTIVE_HIGH>
-            , <&pro_micro 4 GPIO_ACTIVE_HIGH>
-            , <&pro_micro 9 GPIO_ACTIVE_HIGH>
-            ;
-    };
+    // physical_layout0: physical_layout_0 { // First physical layout, use different naming for other layouts
+    //     compatible = "zmk,physical-layout";
+    //     display-name = "Default Layout";
+    //     kscan = <&kscan0>; // Label of the kscan node, optional if all layouts use the same
+    //     transform = <&default_transform>; // Label of the matrix transform for this layout
+
+    //     keys  //                     w   h    x    y     rot    rx    ry
+    //         = <&key_physical_attrs 100 100    0   57       0     0     0>
+    //         , <&key_physical_attrs 100 100  100   12       0     0     0>
+    //         , <&key_physical_attrs 100 100  200    0       0     0     0>
+    //         , <&key_physical_attrs 100 100  300   12       0     0     0>
+    //         , <&key_physical_attrs 100 100  400   12       0     0     0>
+    //         , <&key_physical_attrs 100 100  800   12       0     0     0>
+    //         , <&key_physical_attrs 100 100  900   12       0     0     0>
+    //         , <&key_physical_attrs 100 100 1000    0       0     0     0>
+    //         , <&key_physical_attrs 100 100 1100   12       0     0     0>
+    //         , <&key_physical_attrs 100 100 1200   57       0     0     0>
+    //         , <&key_physical_attrs 100 100    0  157       0     0     0>
+    //         , <&key_physical_attrs 100 100  100  112       0     0     0>
+    //         , <&key_physical_attrs 100 100  200  100       0     0     0>
+    //         , <&key_physical_attrs 100 100  300  112       0     0     0>
+    //         , <&key_physical_attrs 100 100  400  112       0     0     0>
+    //         , <&key_physical_attrs 100 100  800  112       0     0     0>
+    //         , <&key_physical_attrs 100 100  900  112       0     0     0>
+    //         , <&key_physical_attrs 100 100 1000  100       0     0     0>
+    //         , <&key_physical_attrs 100 100 1100  112       0     0     0>
+    //         , <&key_physical_attrs 100 100 1200  157       0     0     0>
+    //         , <&key_physical_attrs 100 100    0  257       0     0     0>
+    //         , <&key_physical_attrs 100 100  100  212       0     0     0>
+    //         , <&key_physical_attrs 100 100  200  200       0     0     0>
+    //         , <&key_physical_attrs 100 100  300  212       0     0     0>
+    //         , <&key_physical_attrs 100 100  400  212       0     0     0>
+    //         , <&key_physical_attrs 100 100  800  212       0     0     0>
+    //         , <&key_physical_attrs 100 100  900  212       0     0     0>
+    //         , <&key_physical_attrs 100 100 1000  200       0     0     0>
+    //         , <&key_physical_attrs 100 100 1100  212       0     0     0>
+    //         , <&key_physical_attrs 100 100 1200  257       0     0     0>
+    //         , <&key_physical_attrs 100 100  248  312       0     0     0>
+    //         , <&key_physical_attrs 100 100  248  312    1500   298   789>
+    //         , <&key_physical_attrs 100 100  248  312    3000   298   789>
+    //         , <&key_physical_attrs 100 100  952  312 (-3000)  1002   789>
+    //         , <&key_physical_attrs 100 100  952  312 (-1500)  1002   789>
+    //         ;
+    // };
 
     // trackball_listener: trackball_listener {
     //     compatible = "zmk,input-listener";

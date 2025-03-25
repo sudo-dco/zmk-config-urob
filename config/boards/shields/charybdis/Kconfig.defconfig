@@ -3,12 +3,6 @@ if SHIELD_CHARYBDIS_RIGHT
 config ZMK_KEYBOARD_NAME
 	default "Charybdis Nano"
 
-config ZMK_POINTING
-    default y
-
-config SPI
-    default y
-
 config ZMK_SPLIT_BLE_ROLE_CENTRAL
 	default y
 

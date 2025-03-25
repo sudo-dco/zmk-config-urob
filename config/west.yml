@@ -26,10 +26,10 @@ manifest:
       url-base: https://github.com/urob
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: m165437
-      url-base: https://github.com/M165437
-    - name: tangbonze
-      url-base: https://github.com/tangbonze
+    # - name: m165437
+    #   url-base: https://github.com/M165437
+    # - name: tangbonze
+    #   url-base: https://github.com/tangbonze
     - name: badjeff
       url-base: https://github.com/badjeff
 
@@ -50,6 +50,7 @@ manifest:
     - name: zmk-tri-state
       path: modules/zmk/tri-state
     - name: zmk-pmw3610-driver
+      path: modules/zmk/zmk-pmw3610-driver
       remote: badjeff
       revision: main
 
