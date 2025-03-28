@@ -1,0 +1,19 @@
+# Copyright (c) 2022 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+if SHIELD_KEEZYBOOST
+
+config ZMK_KEYBOARD_NAME
+    default "keezyboost"
+
+if ZMK_DISPLAY
+
+config SPI
+    default y
+
+config ST7735R
+    default y
+
+endif # ZMK_DISPLAY
+
+endif
