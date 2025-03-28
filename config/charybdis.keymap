@@ -5,9 +5,9 @@
                  LT RT                                                         \
                  LM RM                                                         \
                  LB RB                                                         \
-        &none &kp LGUI LH RH &smart_mouse                                      \
+        &kp LGUI LH RH &smart_mouse                                            \
     )
 
 #include <dt-bindings/zmk/ext_power.h>
-#include "zmk-helpers/key-labels/36.h"
+#include "zmk-helpers/key-labels/34.h"
 #include "base.keymap"
