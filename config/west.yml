@@ -26,11 +26,17 @@ manifest:
       url-base: https://github.com/urob
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
+    - name: eXsoR65
+      url-base: https://github.com/eXsoR65
 
   projects:
     - name: zmk
       remote: zmkfirmware
       import: app/west.yml
+    - name: Charybdis_Nano-Config
+      remote: eXsoR65
+      revision: main
+      import: config/west.yml
 
     # ZMK modules
     - name: zmk-adaptive-key
@@ -43,6 +49,7 @@ manifest:
       path: modules/zmk/leader-key
     - name: zmk-tri-state
       path: modules/zmk/tri-state
+
 
     # Temporarily overload Zephyr until
     # https://github.com/zmkfirmware/zephyr/pull/40 is merged.

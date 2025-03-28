@@ -13,8 +13,12 @@
 #
 ---
 include:
-  - board: planck_rev6
-  - board: corneish_zen_v2_left
-  - board: corneish_zen_v2_right
-  - board: glove80_lh
-  - board: glove80_rh
+  - board: nice_nano_v2
+    shield: settings_reset
+  - board: nice_nano_v2
+    shield: charybdis_left
+    # cmake-args: -DZMK_EXTRA_MODULES="/home/dco/zmk-workspace/zmk-pmw3610-driver;/home/dco/zmk-workspace/Charybdis_Nano-Config"
+  - board: nice_nano_v2
+    shield: charybdis_right
+    # cmake-args: -DZMK_EXTRA_MODULES="/home/dco/zmk-workspace/zmk-pmw3610-driver"
+
