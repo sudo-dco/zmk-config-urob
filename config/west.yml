@@ -26,10 +26,6 @@ manifest:
       url-base: https://github.com/urob
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    # - name: m165437
-    #   url-base: https://github.com/M165437
-    # - name: tangbonze
-    #   url-base: https://github.com/tangbonze
     - name: badjeff
       url-base: https://github.com/badjeff
 
@@ -49,12 +45,8 @@ manifest:
       path: modules/zmk/leader-key
     - name: zmk-tri-state
       path: modules/zmk/tri-state
-    - name: zmk-pmw3610-driver
-      path: modules/zmk/zmk-pmw3610-driver
-      remote: badjeff
-      revision: main
 
-    # Temporarily overload Zephyr until
+    # # Temporarily overload Zephyr until
     # https://github.com/zmkfirmware/zephyr/pull/40 is merged.
     - name: zephyr
       revision: v3.5.0+zmk-fixes
@@ -70,24 +62,9 @@ manifest:
           - lvgl
           - tinycrypt
 
-    # - name: nice-view-gem
-    #   path: modules/zmk/nice-view-gem
-    #   remote: m165437
-    #   revision: main
-
-    # - name: zmk-config-charybdis_nano
-    #   path: modules/zmk/charybdis-nano
-    #   remote: tangbonze
-    #   revision: main
-
-    # - name: zmk-split-peripheral-input-relay
-    #   path: modules/zmk/zmk-split-peripheral-input-relay
-    #   remote: badjeff
-    #   revision: main
-    # - name: zmk-input-behavior-listener
-    #   path: modules/zmk/zmk-input-behavior-listener
-    #   remote: badjeff
-    #   revision: main
+    - name: zmk-pmw3610-driver
+      remote: badjeff
+      revision: main
 
   self:
     path: config

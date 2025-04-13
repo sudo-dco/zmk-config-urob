@@ -51,6 +51,18 @@
   };
 };
 
+&trackball_listener {
+  scroll {
+    layers = <NAV>;
+    input-processors = <&zip_xy_scaler 1 2 &zip_xy_to_scroll_mapper>;
+  };
+
+  precision {
+    layers = <FN>;
+    input-processors = <&zip_xy_scaler 1 2>;
+  };
+};
+
 #define U_MS_U &mmv MOVE_UP
 #define U_MS_D &mmv MOVE_DOWN
 #define U_MS_L &mmv MOVE_LEFT

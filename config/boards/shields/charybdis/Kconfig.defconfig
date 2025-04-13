@@ -3,7 +3,10 @@ if SHIELD_CHARYBDIS_RIGHT
 config ZMK_KEYBOARD_NAME
 	default "Charybdis Nano"
 
-config ZMK_SPLIT_BLE_ROLE_CENTRAL
+config ZMK_SPLIT_ROLE_CENTRAL
+	default y
+
+config PM_DEVICE
 	default y
 
 endif
