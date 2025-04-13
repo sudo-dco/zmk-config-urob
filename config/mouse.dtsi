@@ -53,8 +53,8 @@
 
 &trackball_listener {
   scroll {
-    layers = <NAV>;
-    input-processors = <&zip_xy_scaler 1 2 &zip_xy_to_scroll_mapper>;
+    layers = <SCR>;
+    input-processors = <&zip_xy_scaler 1 4>, <&zip_xy_to_scroll_mapper>;
   };
 
   precision {
