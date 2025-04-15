@@ -6,3 +6,4 @@ firmware
 zephyr
 zmk
 draw/base.yaml
+zmk-pmw3610-driver

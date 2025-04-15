@@ -182,6 +182,9 @@ ZMK_TAP_DANCE(copy_cut, bindings = <&kp LC(INS)>, <&kp LC(X)>;
 // Sticky shift + leader.
 ZMK_MACRO(leader_sft, bindings = <&sk LSHFT &leader>;)
 
+ZMK_HOLD_TAP(mb, bindings = <&mo>, <&mkp>; flavor = "balanced";
+             tapping-term-ms = <200>; quick-tap-ms = <QUICK_TAP_MS>;)
+
 // Misc aliases. [TODO: clean up]
 #define CANCEL    &kp K_CANCEL            // Cancel caps-word & auto-layers.
 #define DSK_PREV  &hmr LCTRL LG(LC(LEFT)) // Previous desktop.
@@ -266,7 +269,7 @@ ZMK_BASE_LAYER(Mouse,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     ___           ___           ___           &mo SCR       ___         ,   ___           U_MS_L        U_MS_D         U_MS_U       U_MS_R      ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    ___           ___           ___           ___           ___         ,   ___           &mkp LCLK     &mkp MCLK      &mkp RCLK    ___         ,
+    ___           ___           ___           ___           ___         ,   ___           &mkp LCLK     &mb SCR MCLK   &mkp RCLK    ___         ,
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯
                                               ___           ___         ,   U_WH_U        U_WH_D
 //                                          ╰─────────────┴─────────────╯ ╰─────────────┴─────────────╯
