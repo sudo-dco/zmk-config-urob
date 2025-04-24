@@ -193,6 +193,8 @@ ZMK_HOLD_TAP(mb, bindings = <&mo>, <&mkp>; flavor = "balanced";
 #define PIN_APP   &kp LG(LC(LS(A)))       // Pin application across desktops.
 #define DSK_MGR   &kp LA(GRAVE)           // Desktop manager.
 #define VOL_DOWN  &hmr RSHFT C_VOL_DN
+#define PAGE_PREV &kp LA(LEFT_ARROW)      // Navigate to previous page.
+#define PAGE_NEXT &kp LA(RIGHT_ARROW)     // Navigate to next page.
 
 /* Keymap */
 
@@ -269,7 +271,7 @@ ZMK_BASE_LAYER(Mouse,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     ___           ___           ___           &mo SCR       ___         ,   ___           U_MS_L        U_MS_D         U_MS_U       U_MS_R      ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    ___           ___           ___           ___           ___         ,   ___           &mkp LCLK     &mb SCR MCLK   &mkp RCLK    ___         ,
+    ___           ___           ___           ___           ___         ,   PAGE_PREV     &mkp LCLK     &mb SCR MCLK   &mkp RCLK    PAGE_NEXT   ,
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯
                                               ___           ___         ,   U_WH_U        U_WH_D
 //                                          ╰─────────────┴─────────────╯ ╰─────────────┴─────────────╯
