@@ -73,7 +73,7 @@ manifest:
     - name: zmk-dongle-display
       remote: englmaxi
       revision: main
-      path: modules/zmk/dongle-display
+      # path: modules/zmk/dongle-display
 
     - name: zmk-dongle-display-view
       remote: mctechnology17
