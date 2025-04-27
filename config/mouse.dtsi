@@ -1,6 +1,6 @@
 // Settings tuned for 3840 x 2160 display resolution
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 600 // 600
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 7  // 10
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 5  // 10
 
 #include <dt-bindings/zmk/pointing.h>
 #include <input/processors.dtsi>
@@ -31,22 +31,22 @@
   };
 };
 
-// / {
-//   zip_scroll_scaler: zip_scroll_scaler {
-//     compatible = "zmk,input-processor-scaler";
-//     #input-processor-cells = <2>;
-//     type = <INPUT_EV_REL>;
-//     codes = <INPUT_REL_WHEEL INPUT_REL_HWHEEL>;
-//     track-remainders;
-//   };
+/ {
+  zip_scroll_scaler: zip_scroll_scaler {
+    compatible = "zmk,input-processor-scaler";
+    #input-processor-cells = <2>;
+    type = <INPUT_EV_REL>;
+    codes = <INPUT_REL_WHEEL INPUT_REL_HWHEEL>;
+    track-remainders;
+  };
 
-//   zip_y_to_scroll_mapper: zip_y_to_scroll_mapper {
-//     compatible = "zmk,input-processor-code-mapper";
-//     #input-processor-cells = <0>;
-//     type = <INPUT_EV_REL>;
-//     map = <INPUT_REL_Y INPUT_REL_WHEEL>;
-//   };
-// };
+  zip_y_to_scroll_mapper: zip_y_to_scroll_mapper {
+    compatible = "zmk,input-processor-code-mapper";
+    #input-processor-cells = <0>;
+    type = <INPUT_EV_REL>;
+    map = <INPUT_REL_Y INPUT_REL_WHEEL>;
+  };
+};
 
 &msc_input_listener {
   warp {
@@ -59,17 +59,17 @@
   };
 };
 
-// &trackball_listener {
-//   scroll {
-//     layers = <SCR>;
-//     input-processors = <&zip_xy_to_scroll_mapper>, <&zip_scroll_scaler 1 5>, <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>;
-//   };
+&trackball_listener {
+  scroll {
+    layers = <SCR>;
+    input-processors = <&zip_xy_to_scroll_mapper>, <&zip_scroll_scaler 1 5>, <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>;
+  };
 
-//   precision {
-//     layers = <FN>;
-//     input-processors = <&zip_xy_scaler 1 2>;
-//   };
-// };
+  precision {
+    layers = <FN>;
+    input-processors = <&zip_xy_scaler 1 2>;
+  };
+};
 
 #define U_MS_U &mmv MOVE_UP
 #define U_MS_D &mmv MOVE_DOWN
