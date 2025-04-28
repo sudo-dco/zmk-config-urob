@@ -30,8 +30,8 @@ manifest:
       url-base: https://github.com/badjeff
     - name: englmaxi
       url-base: https://github.com/englmaxi
-    - name: mctechnology17
-      url-base: https://github.com/mctechnology17
+    # - name: mctechnology17
+    #   url-base: https://github.com/mctechnology17
 
   projects:
     - name: zmk
@@ -72,13 +72,13 @@ manifest:
 
     - name: zmk-dongle-display
       remote: englmaxi
-      revision: main
-      # path: modules/zmk/dongle-display
+      revision: 5dbeb0d03d26648d5ef454b46422e957ddfc2c32
+      path: modules/zmk/dongle-display
 
-    - name: zmk-dongle-display-view
-      remote: mctechnology17
-      revision: main
-      path: modules/zmk/dongle-nice-view
+    # - name: zmk-dongle-display-view
+    #   remote: mctechnology17
+    #   revision: main
+    #   path: modules/zmk/dongle-nice-view
 
   self:
     path: config

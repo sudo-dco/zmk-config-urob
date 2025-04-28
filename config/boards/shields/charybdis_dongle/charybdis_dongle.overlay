@@ -44,12 +44,13 @@
 &pro_micro_i2c {
     status = "okay";
 
-    oled: ssd1306@3c {
-        compatible = "solomon,ssd1306fb";
+    oled: ssd1106@3c {
+        status = "okay";
+        compatible = "sinowealth,sh1106";
         reg = <0x3c>;
         width = <128>;
-        height = <160>;
-        segment-offset = <0>;
+        height = <64>;
+        segment-offset = <2>;
         page-offset = <0>;
         display-offset = <0>;
         multiplex-ratio = <31>;
@@ -61,11 +62,31 @@
     };
 };
 
-// &pro_micro_spi {
-    //     status = "okay";
-    //     cs-gpios = <&pro_micro 15 GPIO_ACTIVE_LOW>;
+&pro_micro_spi {
+        status = "okay";
+        cs-gpios = <&pro_micro 15 GPIO_ACTIVE_LOW>;
 
-    //     oled: st7789v@0 {
+        oled: ssd1106@3c {
+            status = "okay";
+            compatible = "sinowealth,sh1106";
+            reg = <0>;
+            spi-max-frequency = <8000000>;
+            reset-gpios = <&gpio 2 GPIO_ACTIVE_LOW>;
+            dc-gpios = <&gpio 26 GPIO_ACTIVE_LOW>;
+            width = <128>;
+            height = <64>;
+            segment-offset = <2>;
+            page-offset = <0>;
+            display-offset = <0>;
+            multiplex-ratio = <31>;
+            segment-remap;
+            com-invdir;
+            com-sequential;
+            inversion-on;
+            prechargep = <0x22>;
+        };
+
+        // oled: st7789v@0 {
         //         compatible = "sitronix,st7789v";
         //         status = "okay";
         //         reg = <0>;
@@ -91,5 +112,5 @@
         //         nvgam-param = [ D0 04 0C 11 13 2C 3F 44 51 2F 1F 1F 20 23  ];
         //         ram-param = [ 00 F0  ];
         //         rgb-param = [ CD 08 14  ];
-    //     };
-// };
+        // };
+};
