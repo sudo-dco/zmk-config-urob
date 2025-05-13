@@ -29,9 +29,9 @@
         #address-cells = <1>;
         #size-cells = <0>;
     
-        trackball_split: trackball_split@0 {
+        trackball_split: trackball_split@1 {
             compatible = "zmk,input-split";
-            reg = <0>;
+            reg = <1>;
         };
     
         trackball_listener: trackball_listener {

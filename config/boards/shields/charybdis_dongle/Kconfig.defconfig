@@ -20,11 +20,8 @@ config BT_MAX_CONN
 config BT_MAX_PAIRED
     default 6
 
-# config ZMK_POINTING
-#     default y
-
-# config SPI
-#     default y
+config SPI
+    default y
 
 # config ST7789V
 #     default y
@@ -32,9 +29,6 @@ config BT_MAX_PAIRED
 endif
 
 if ZMK_DISPLAY
-
-config I2C
-    default y
 
 config SSD1306
     default y
