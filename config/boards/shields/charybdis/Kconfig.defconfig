@@ -20,11 +20,15 @@ config BT_MAX_CONN
 config BT_MAX_PAIRED
     default 6
 
-config SPI
-    default y
-
 # config ST7789V
 #     default y
+
+endif
+
+if SHIELD_CHARYBDIS_LEFT || SHIELD_CHARYBDIS_RIGHT
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default n
 
 endif
 
@@ -60,9 +64,15 @@ endchoice
 
 endif
 
-if SHIELD_CHARYBDIS_DONGLE_LEFT || SHIELD_CHARYBDIS_DONGLE_RIGHT || SHIELD_CHARYBDIS_DONGLE
+if SHIELD_CHARYBDIS_LEFT || SHIELD_CHARYBDIS_RIGHT || SHIELD_CHARYBDIS_DONGLE
+
+config SPI
+    default y
 
 config ZMK_SPLIT
+    default y
+
+config ZMK_POINTING
     default y
 
 endif
