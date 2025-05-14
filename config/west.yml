@@ -69,10 +69,11 @@ manifest:
     - name: zmk-pmw3610-driver
       remote: badjeff
       revision: main
+      path: modules/zmk/pmw3610-driver
 
     - name: zmk-dongle-display
       remote: englmaxi
-      revision: 5dbeb0d03d26648d5ef454b46422e957ddfc2c32
+      revision: main
       path: modules/zmk/dongle-display
 
     # - name: zmk-dongle-display-view
