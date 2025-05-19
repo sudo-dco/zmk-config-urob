@@ -18,12 +18,12 @@
         track-remainders;
     };
 
-    // zip_y_to_scroll_mapper: zip_y_to_scroll_mapper {
-    //     compatible = "zmk,input-processor-code-mapper";
-    //     #input-processor-cells = <0>;
-    //     type = <INPUT_EV_REL>;
-    //     map = <INPUT_REL_Y INPUT_REL_WHEEL>;
-    // };
+    zip_y_to_scroll_mapper: zip_y_to_scroll_mapper {
+        compatible = "zmk,input-processor-code-mapper";
+        #input-processor-cells = <0>;
+        type = <INPUT_EV_REL>;
+        map = <INPUT_REL_Y INPUT_REL_WHEEL>;
+    };
 
     split_inputs {
         #address-cells = <1>;
@@ -44,7 +44,7 @@
         compatible = "zmk,input-listener";
         status = "disabled";
         device = <&trackball_split>;
-        input-processors = <&zip_xy_scaler 1 2>;
+        // input-processors = <&zip_xy_scaler 1 2>;
 
         // scroll {
         //     layers = <SCR>;
@@ -61,7 +61,7 @@
         compatible = "zmk,input-listener";
         status = "disabled";
         device = <&trackball_split2>;
-        input-processors = <&zip_xy_to_scroll_mapper>, <&zip_scroll_scaler 1 16>, <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>;
+        input-processors = <&zip_y_to_scroll_mapper>, <&zip_scroll_scaler 1 16>, <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>;
 
         // scroll {
         //     layers = <SCR>;
