@@ -5,7 +5,7 @@
                  LT RT                                                         \
                  LM RM                                                         \
                  LB RB                                                         \
-       &mo MOUSE LH RH                                                         \
+                 LH RH                                                         \
     )
 
 #include "zmk-helpers/key-labels/36.h"

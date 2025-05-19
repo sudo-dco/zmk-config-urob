@@ -1,4 +1,6 @@
 #include "charybdis.dtsi"
+#include "charybdis_pmw3610.dtsi"
+#include "split_input.dtsi"
 
 // &kscan0 {
 // 	compatible = "zmk,kscan-gpio-matrix";
@@ -19,3 +21,11 @@
 // 		, <&pro_micro 9 GPIO_ACTIVE_HIGH>
 // 		;
 // };
+
+&trackball_split {
+	status = "disabled";
+};
+
+&trackball_split2 {
+	device = <&trackball2>;
+};
