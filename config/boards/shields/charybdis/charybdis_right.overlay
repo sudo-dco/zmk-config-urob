@@ -26,11 +26,6 @@
 // 		;
 // };
 
-// &trackball_listener {
-// 	status = "okay";
-// 	device = <&trackball>;
-// };
-
 &trackball_split {
 	device = <&trackball>;
 };
