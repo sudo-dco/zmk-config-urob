@@ -30,8 +30,6 @@ manifest:
       url-base: https://github.com/badjeff
     - name: englmaxi
       url-base: https://github.com/englmaxi
-    # - name: mctechnology17
-    #   url-base: https://github.com/mctechnology17
 
   projects:
     - name: zmk
@@ -71,15 +69,15 @@ manifest:
       revision: main
       path: modules/zmk/pmw3610-driver
 
+    - name: zmk-input-processor-report-rate-limit
+      remote: badjeff
+      revision: main
+      path: modules/zmk/report-rate-limit
+
     - name: zmk-dongle-display
       remote: englmaxi
       revision: main
       path: modules/zmk/dongle-display
-
-    # - name: zmk-dongle-display-view
-    #   remote: mctechnology17
-    #   revision: main
-    #   path: modules/zmk/dongle-nice-view
 
   self:
     path: config

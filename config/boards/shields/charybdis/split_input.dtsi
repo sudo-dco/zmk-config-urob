@@ -1,5 +1,6 @@
 #include <dt-bindings/zmk/input_transform.h>
 #include <input/processors.dtsi>
+#include <input/processors/report_rate_limit.dtsi>
 
 #define DEF 0
 #define NAV 1
@@ -44,7 +45,7 @@
         compatible = "zmk,input-listener";
         status = "disabled";
         device = <&trackball_split>;
-        // input-processors = <&zip_xy_scaler 1 2>;
+        input-processors = <&zip_report_rate_limit 16>, <&zip_xy_scaler 2 1>;
 
         // scroll {
         //     layers = <SCR>;
@@ -61,12 +62,13 @@
         compatible = "zmk,input-listener";
         status = "disabled";
         device = <&trackball_split2>;
-        input-processors = <&zip_x_scaler 1 16>, <&zip_xy_to_scroll_mapper>, <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>, <&zip_scroll_scaler 1 13>;
+        input-processors = <&zip_report_rate_limit 16>;
+        // input-processors = <&zip_x_scaler 1 16>, <&zip_xy_to_scroll_mapper>, <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>, <&zip_scroll_scaler 1 13>;
 
-        // scroll {
-        //     layers = <SCR>;
-        //     input-processors = <&zip_xy_to_scroll_mapper>, <&zip_scroll_scaler 1 16>, <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>;
-        // };
+        scroll {
+            layers = <DEF>;
+            input-processors = <&zip_x_scaler 1 16>, <&zip_xy_to_scroll_mapper>, <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>, <&zip_scroll_scaler 1 13>;
+        };
     
         precision {
             layers = <FN>;
