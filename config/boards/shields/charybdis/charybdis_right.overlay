@@ -1,7 +1,6 @@
 #include "charybdis.dtsi"
 #include "charybdis_pmw3610.dtsi"
 #include "split_input.dtsi"
-#include <input/processors/report_rate_limit.dtsi>
 
 &default_transform {
     col-offset = <5>;
@@ -29,8 +28,6 @@
 
 &trackball_split {
 	device = <&trackball>;
-	input-processors = <&zip_report_rate_limit 16>;
-
 };
 
 &trackball_split2 {
