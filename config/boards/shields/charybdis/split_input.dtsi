@@ -61,7 +61,7 @@
         compatible = "zmk,input-listener";
         status = "disabled";
         device = <&trackball_split>;
-        input-processors = <&zip_report_rate_limit 16>, <&zip_xy_scaler 5 4>;
+        input-processors = <&zip_report_rate_limit 16>, <&zip_xy_scaler 6 5>;
     
         precision {
             layers = <FN>;

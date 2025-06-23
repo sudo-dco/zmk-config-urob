@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "activity_state_changed.h": "c"
-    }
+        "*.keymap": "dts",
+        "activity_state_changed.h": "c",
+        "battery_bar.h": "c"
+    },
+    "terminal.integrated.scrollback": 10000
 }

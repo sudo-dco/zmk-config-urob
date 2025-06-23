@@ -30,6 +30,8 @@ manifest:
       url-base: https://github.com/badjeff
     - name: englmaxi
       url-base: https://github.com/englmaxi
+    - name: carrefinho
+      url-base: https://github.com/carrefinho 
 
   projects:
     - name: zmk
@@ -78,6 +80,11 @@ manifest:
       remote: englmaxi
       revision: main
       path: modules/zmk/dongle-display
+
+    - name: prospector-zmk-module
+      remote: carrefinho
+      revision: main
+      path: modules/zmk/prospector
 
   self:
     path: config
