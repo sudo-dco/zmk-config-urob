@@ -8,7 +8,7 @@
 #define NUM 3
 #define SYS 4
 #define MOUSE 5
-#define SCR 6
+#define SCRL 6
 
 / {
     zip_scroll_scaler: zip_scroll_scaler {
@@ -19,26 +19,33 @@
         track-remainders;
     };
 
-    zip_y_to_scroll_mapper: zip_y_to_scroll_mapper {
-        compatible = "zmk,input-processor-code-mapper";
-        #input-processor-cells = <0>;
-        type = <INPUT_EV_REL>;
-        map = <INPUT_REL_Y INPUT_REL_WHEEL>;
-    };
+    // zip_y_to_scroll_mapper: zip_y_to_scroll_mapper {
+    //     compatible = "zmk,input-processor-code-mapper";
+    //     #input-processor-cells = <0>;
+    //     type = <INPUT_EV_REL>;
+    //     map = <INPUT_REL_Y INPUT_REL_WHEEL>;
+    // };
 
-    xy_transf: xy_transf {
-        compatible = "zmk,input-processor-transform";
-        #input-processor-cells = <1>;
-        type = <INPUT_EV_REL>;
-        x-codes = <INPUT_REL_X>, <INPUT_REL_WHEEL>;
-        y-codes = <INPUT_REL_Y>, <INPUT_REL_HWHEEL>;
-    };
+    // xy_transf: xy_transf {
+    //     compatible = "zmk,input-processor-transform";
+    //     #input-processor-cells = <1>;
+    //     type = <INPUT_EV_REL>;
+    //     x-codes = <INPUT_REL_X>, <INPUT_REL_WHEEL>;
+    //     y-codes = <INPUT_REL_Y>, <INPUT_REL_HWHEEL>;
+    // };
 
-    to_wheel: to_wheel {
-        compatible = "zmk,input-processor-code-mapper";
-        #input-processor-cells = <0>;
-        type = <INPUT_EV_REL>;
-        map = <INPUT_REL_X INPUT_REL_MISC>, <INPUT_REL_Y INPUT_REL_WHEEL>;
+    // to_wheel: to_wheel {
+    //     compatible = "zmk,input-processor-code-mapper";
+    //     #input-processor-cells = <0>;
+    //     type = <INPUT_EV_REL>;
+    //     map = <INPUT_REL_X INPUT_REL_MISC>, <INPUT_REL_Y INPUT_REL_WHEEL>;
+    // };
+
+    zip_temp_layer_scroll: zip_temp_layer_scroll {
+        compatible = "zmk,input-processor-temp-layer";
+        #input-processor-cells = <2>;
+        require-prior-idle-ms = <2000>;
+        excluded-positions = <25 26 27 28 29>;
     };
 
     split_inputs {
@@ -61,7 +68,7 @@
         compatible = "zmk,input-listener";
         status = "disabled";
         device = <&trackball_split>;
-        input-processors = <&zip_report_rate_limit 16>, <&zip_xy_scaler 6 5>;
+        input-processors = <&zip_report_rate_limit 16>, <&zip_xy_scaler 7 6>, <&zip_temp_layer_scroll 6 1000>;
     
         precision {
             layers = <FN>;
