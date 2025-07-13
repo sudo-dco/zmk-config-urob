@@ -44,7 +44,7 @@
     zip_temp_layer_scroll: zip_temp_layer_scroll {
         compatible = "zmk,input-processor-temp-layer";
         #input-processor-cells = <2>;
-        require-prior-idle-ms = <2000>;
+        require-prior-idle-ms = <500>;
         excluded-positions = <25 26 27 28 29>;
     };
 
@@ -81,15 +81,14 @@
         compatible = "zmk,input-listener";
         status = "disabled";
         device = <&trackball_split2>;
-        input-processors = <&zip_report_rate_limit 16>
-                        , <&zip_x_scaler 1 16>
-                        , <&zip_xy_to_scroll_mapper>
-                        , <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>
-                        , <&zip_scroll_scaler 1 16>;
+        input-processors = <&zip_report_rate_limit 16>, <&zip_temp_layer_scroll 6 500>;
+                        // , <&zip_x_scaler 0 1>
+                        // , <&zip_xy_to_scroll_mapper>
+                        // , <&zip_scroll_scaler 1 16>;
 
         scroll {
-            layers = <NAV FN>;
-            input-processors = <&zip_xy_scaler 0 1>;
+            layers = <SCRL>;
+            input-processors = <&zip_report_rate_limit 16>, <&zip_x_scaler 0 1>, <&zip_xy_to_scroll_mapper>, <&zip_scroll_scaler 1 16>;
         };
     };
 };
