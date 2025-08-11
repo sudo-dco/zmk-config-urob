@@ -1,3 +1,5 @@
+set unstable
+
 default:
     @just --list --unsorted
 
@@ -7,8 +9,9 @@ out := absolute_path('firmware')
 draw := absolute_path('draw')
 
 # parse combos.dtsi and adjust settings to not run out of slots
+[script]
 _parse_combos:
-    #!/usr/bin/env bash
+    # !/usr/bin/env bash
     set -euo pipefail
     cconf="{{ config / 'combos.dtsi' }}"
     if [[ -f $cconf ]]; then
@@ -34,15 +37,17 @@ _parse_combos:
     fi
 
 # parse build.yaml and filter targets by expression
+[script]
 _parse_targets $expr:
-    #!/usr/bin/env bash
+    # !/usr/bin/env bash
     attrs="[.board, .shield, .snippet]"
     filter="(($attrs | map(. // [.]) | combinations), ((.include // {})[] | $attrs)) | join(\",\")"
     echo "$(yq -r "$filter" build.yaml | grep -v "^," | grep -i "${expr/#all/.*}")"
 
 # build firmware for single board & shield combination
+[script]
 _build_single $board $shield $snippet *west_args:
-    #!/usr/bin/env bash
+    # !/usr/bin/env bash
     set -euo pipefail
     artifact="${shield:+${shield// /+}-}${board}"
     build_dir="{{ build / '$artifact' }}"
@@ -58,8 +63,9 @@ _build_single $board $shield $snippet *west_args:
     fi
 
 # build firmware for matching targets
+[script]
 build expr *west_args: _parse_combos
-    #!/usr/bin/env bash
+    # !/usr/bin/env bash
     set -euo pipefail
     targets=$(just _parse_targets {{ expr }})
 
@@ -81,8 +87,9 @@ clean-nix:
     nix-collect-garbage --delete-old
 
 # parse & plot keymap
+[script]
 draw:
-    #!/usr/bin/env bash
+    # !/usr/bin/env bash
     set -euo pipefail
     keymap -c "{{ draw }}/config.yaml" parse -z "{{ config }}/base.keymap" --virtual-layers Combos >"{{ draw }}/base.yaml"
     yq -Yi '.combos.[].l = ["Combos"]' "{{ draw }}/base.yaml"
@@ -106,9 +113,9 @@ update:
 upgrade-sdk:
     nix flake update --flake .
 
-[no-cd]
+[script, no-cd]
 test $testpath *FLAGS:
-    #!/usr/bin/env bash
+    # !/usr/bin/env bash
     set -euo pipefail
     testcase=$(basename "$testpath")
     build_dir="{{ build / "tests" / '$testcase' }}"
