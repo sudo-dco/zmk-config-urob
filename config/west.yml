@@ -19,7 +19,7 @@
 manifest:
   defaults:
     remote: urob
-    revision: v0.2 # Pin everything to v0.2
+    revision: v0.3 # Pin everything to v0.3
 
   remotes:
     - name: urob
@@ -28,8 +28,6 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: badjeff
       url-base: https://github.com/badjeff
-    - name: englmaxi
-      url-base: https://github.com/englmaxi
     - name: carrefinho
       url-base: https://github.com/carrefinho 
 
@@ -75,11 +73,6 @@ manifest:
       remote: badjeff
       revision: main
       path: modules/zmk/report-rate-limit
-
-    - name: zmk-dongle-display
-      remote: englmaxi
-      revision: main
-      path: modules/zmk/dongle-display
 
     - name: prospector-zmk-module
       remote: carrefinho
