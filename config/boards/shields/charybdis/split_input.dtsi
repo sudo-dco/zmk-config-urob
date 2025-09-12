@@ -68,11 +68,11 @@
         compatible = "zmk,input-listener";
         status = "disabled";
         device = <&trackball_split>;
-        input-processors = <&zip_report_rate_limit 16>, <&zip_xy_scaler 7 6>, <&zip_temp_layer_scroll 6 1000>;
+        input-processors = <&zip_ble_report_rate_limit 14>, <&zip_xy_scaler 7 6>, <&zip_temp_layer_scroll 6 1000>;
     
         precision {
             layers = <FN>;
-            input-processors = <&zip_report_rate_limit 16>, <&zip_xy_scaler 1 2>;
+            input-processors = <&zip_ble_report_rate_limit 14>, <&zip_xy_scaler 1 2>;
         };
     };
 
@@ -81,14 +81,14 @@
         compatible = "zmk,input-listener";
         status = "disabled";
         device = <&trackball_split2>;
-        input-processors = <&zip_report_rate_limit 16>, <&zip_temp_layer_scroll 6 500>;
+        input-processors = <&zip_ble_report_rate_limit 14>, <&zip_temp_layer_scroll 6 500>;
                         // , <&zip_x_scaler 0 1>
                         // , <&zip_xy_to_scroll_mapper>
                         // , <&zip_scroll_scaler 1 16>;
 
         scroll {
             layers = <SCRL>;
-            input-processors = <&zip_report_rate_limit 16>, <&zip_x_scaler 0 1>, <&zip_xy_to_scroll_mapper>, <&zip_scroll_scaler 1 16>;
+            input-processors = <&zip_ble_report_rate_limit 14>, <&zip_x_scaler 0 1>, <&zip_xy_to_scroll_mapper>, <&zip_scroll_scaler 1 16>;
         };
     };
 };

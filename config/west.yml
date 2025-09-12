@@ -28,6 +28,8 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: badjeff
       url-base: https://github.com/badjeff
+    - name: efogdev
+      url-base: https://github.com/efogdev
     - name: carrefinho
       url-base: https://github.com/carrefinho 
 
@@ -48,14 +50,11 @@ manifest:
     - name: zmk-tri-state
       path: modules/zmk/tri-state
 
-    # # Temporarily overload Zephyr until
-    # https://github.com/zmkfirmware/zephyr/pull/40 is merged.
     - name: zephyr
+      remote: zmkfirmware
       revision: v3.5.0+zmk-fixes
       clone-depth: 1
       import:
-        # Only enable most commonly used boards. For less common hardware one
-        # may need to enable additional modules.
         name-allowlist:
           - cmsis
           - hal_nordic
@@ -64,10 +63,15 @@ manifest:
           - lvgl
           - tinycrypt
 
+    # - name: zmk-pmw3610-driver
+    #   remote: badjeff
+    #   revision: main
+    #   path: modules/zmk/pmw3610-driver
+
     - name: zmk-pmw3610-driver
-      remote: badjeff
+      remote: efogdev
       revision: main
-      path: modules/zmk/pmw3610-driver
+      path: modules/zmk/pmw3610-driver-efogdev
 
     - name: zmk-input-processor-report-rate-limit
       remote: badjeff
