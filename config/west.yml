@@ -31,7 +31,9 @@ manifest:
     - name: efogdev
       url-base: https://github.com/efogdev
     - name: carrefinho
-      url-base: https://github.com/carrefinho 
+      url-base: https://github.com/carrefinho
+    - name: kot149
+      url-base: https://github.com/kot149
 
   projects:
     - name: zmk
@@ -82,6 +84,11 @@ manifest:
       remote: carrefinho
       revision: main
       path: modules/zmk/prospector
+
+    - name: zmk-scroll-snap
+      remote: kot149
+      revision: v1
+      path: modules/zmk/scroll-snap
 
   self:
     path: config
