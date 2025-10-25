@@ -11,14 +11,13 @@ draw := absolute_path('draw')
 # parse build.yaml and filter targets by expression
 [script]
 _parse_targets $expr:
-    #!/usr/bin/env bash
     attrs="[.board, .shield, .snippet, .\"artifact-name\"]"
     filter="(($attrs | map(. // [.]) | combinations), ((.include // {})[] | $attrs)) | join(\",\")"
     echo "$(yq -r "$filter" build.yaml | grep -v "^," | grep -i "${expr/#all/.*}")"
 
 # build firmware for single board & shield combination
+[script]
 _build_single $board $shield $snippet $artifact *west_args:
-    #!/usr/bin/env bash
     set -euo pipefail
     artifact="${artifact:-${shield:+${shield// /+}-}${board}}"
     build_dir="{{ build / '$artifact' }}"
@@ -34,8 +33,8 @@ _build_single $board $shield $snippet $artifact *west_args:
     fi
 
 # build firmware for matching targets
+[script]
 build expr *west_args:
-    #!/usr/bin/env bash
     set -euo pipefail
     targets=$(just _parse_targets {{ expr }})
 
@@ -59,7 +58,6 @@ clean-nix:
 # parse & plot keymap
 [script]
 draw:
-    # !/usr/bin/env bash
     set -euo pipefail
     keymap -c "{{ draw }}/config.yaml" parse -z "{{ config }}/base.keymap" --virtual-layers Combos >"{{ draw }}/base.yaml"
     yq -Yi '.combos.[].l = ["Combos"]' "{{ draw }}/base.yaml"
@@ -85,7 +83,6 @@ upgrade-sdk:
 
 [script, no-cd]
 test $testpath *FLAGS:
-    # !/usr/bin/env bash
     set -euo pipefail
     testcase=$(basename "$testpath")
     build_dir="{{ build / "tests" / '$testcase' }}"
