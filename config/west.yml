@@ -26,10 +26,8 @@ manifest:
       url-base: https://github.com/urob
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: m165437
-      url-base: https://github.com/M165437
-    - name: dsifry
-      url-base: https://github.com/dsifry
+    - name: mctechnology17
+      url-base: https://github.com/mctechnology17
 
   projects:
     - name: zmk
@@ -64,16 +62,10 @@ manifest:
           - hal_stm32
           - lvgl
           - tinycrypt
-
-    - name: nice-view-gem
-      remote: m165437
+    - name: zmk-nice-oled
+      remote: mctechnology17
       revision: main
-      path: modules/zmk/nice-view-gem
-
-    - name: nice-view-mod
-      remote: dsifry
-      revision: main
-      path: modules/zmk/nice-view-mod
+      path: modules/zmk/nice-oled
 
   self:
     path: config
