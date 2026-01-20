@@ -8,45 +8,19 @@ build := absolute_path('.build')
 out := absolute_path('firmware')
 draw := absolute_path('draw')
 
-# parse combos.dtsi and adjust settings to not run out of slots
-[script]
-_parse_combos:
-    set -euo pipefail
-    cconf="{{ config / 'combos.dtsi' }}"
-    if [[ -f $cconf ]]; then
-        # set MAX_COMBOS_PER_KEY to the most frequent combos count
-        count=$(
-            tail -n +10 $cconf |
-                grep -Eo '[LR][TMBH][0-9]' |
-                sort | uniq -c | sort -nr |
-                awk 'NR==1{print $1}'
-        )
-        sed -Ei "/CONFIG_ZMK_COMBO_MAX_COMBOS_PER_KEY/s/=.+/=$count/" "{{ config }}"/*.conf
-        echo "Setting MAX_COMBOS_PER_KEY to $count"
-
-        # set MAX_KEYS_PER_COMBO to the most frequent key count
-        count=$(
-            tail -n +10 $cconf |
-                grep -o -n '[LR][TMBH][0-9]' |
-                cut -d : -f 1 | uniq -c | sort -nr |
-                awk 'NR==1{print $1}'
-        )
-        sed -Ei "/CONFIG_ZMK_COMBO_MAX_KEYS_PER_COMBO/s/=.+/=$count/" "{{ config }}"/*.conf
-        echo "Setting MAX_KEYS_PER_COMBO to $count"
-    fi
-
 # parse build.yaml and filter targets by expression
 [script]
 _parse_targets $expr:
-    attrs="[.board, .shield, .snippet]"
+    #!/usr/bin/env bash
+    attrs="[.board, .shield, .snippet, .\"artifact-name\"]"
     filter="(($attrs | map(. // [.]) | combinations), ((.include // {})[] | $attrs)) | join(\",\")"
     echo "$(yq -r "$filter" build.yaml | grep -v "^," | grep -i "${expr/#all/.*}")"
 
 # build firmware for single board & shield combination
-[script]
-_build_single $board $shield $snippet *west_args:
+_build_single $board $shield $snippet $artifact *west_args:
+    #!/usr/bin/env bash
     set -euo pipefail
-    artifact="${shield:+${shield// /+}-}${board}"
+    artifact="${artifact:-${shield:+${shield// /+}-}${board}}"
     build_dir="{{ build / '$artifact' }}"
 
     echo "Building firmware for $artifact..."
@@ -60,14 +34,14 @@ _build_single $board $shield $snippet *west_args:
     fi
 
 # build firmware for matching targets
-[script]
-build expr *west_args: _parse_combos
+build expr *west_args:
+    #!/usr/bin/env bash
     set -euo pipefail
     targets=$(just _parse_targets {{ expr }})
 
     [[ -z $targets ]] && echo "No matching targets found. Aborting..." >&2 && exit 1
-    echo "$targets" | while IFS=, read -r board shield snippet; do
-        just _build_single "$board" "$shield" "$snippet" {{ west_args }}
+    echo "$targets" | while IFS=, read -r board shield snippet artifact; do
+        just _build_single "$board" "$shield" "$snippet" "$artifact" {{ west_args }}
     done
 
 # clear build cache and artifacts

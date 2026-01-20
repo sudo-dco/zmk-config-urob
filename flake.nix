@@ -30,6 +30,7 @@
 
               pkgs.cmake
               pkgs.dtc
+              pkgs.gcc
               pkgs.ninja
 
               pkgs.just
@@ -46,6 +47,10 @@
               # pkgs.gnugrep
               # pkgs.gnused
             ];
+
+          env = {
+            PYTHONPATH = "${zephyr.pythonEnv}/${zephyr.pythonEnv.sitePackages}";
+          };
 
           shellHook = ''
             export ZMK_BUILD_DIR=$(pwd)/.build;

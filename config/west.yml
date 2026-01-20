@@ -51,6 +51,8 @@ manifest:
       path: modules/zmk/leader-key
     - name: zmk-tri-state
       path: modules/zmk/tri-state
+    - name: zmk-unicode
+      path: modules/zmk/unicode
 
     - name: zephyr
       remote: zmkfirmware
