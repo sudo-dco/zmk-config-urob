@@ -28,10 +28,13 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: mctechnology17
       url-base: https://github.com/mctechnology17
+    - name: englmaxi
+      url-base: https://github.com/englmaxi
 
   projects:
     - name: zmk
       remote: zmkfirmware
+      revision: v0.3.0
       import: app/west.yml
 
     # ZMK modules
@@ -62,10 +65,16 @@ manifest:
           - hal_stm32
           - lvgl
           - tinycrypt
+
     - name: zmk-nice-oled
       remote: mctechnology17
       revision: main
       path: modules/zmk/nice-oled
+
+    - name: zmk-dongle-display
+      remote: englmaxi
+      revision: v0.3
+      path: modules/zmk/dongle-display
 
   self:
     path: config
