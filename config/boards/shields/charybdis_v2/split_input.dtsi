@@ -1,0 +1,40 @@
+#include <scroll-snap.dtsi>
+#include <dt-bindings/zmk/input_transform.h>
+#include <input/processors.dtsi>
+
+#define DEF 0
+#define NAV 1
+#define FN 2
+#define NUM 3
+#define SYS 4
+#define MOUSE 5
+#define SCRL 6
+
+/ {
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
+    
+        trackball_split: trackball_split@0 {
+            compatible = "zmk,input-split";
+            reg = <0>;
+        };
+    };
+
+    trackball_listener: trackball_listener {
+        compatible = "zmk,input-listener";
+        status = "disabled";
+        device = <&trackball_split>;
+        input-processors = <&zip_xy_scaler 5 4>;
+        
+        precision {
+            layers = <FN>;
+            input-processors = <&zip_xy_scaler 1 2>;
+        };
+
+        scroll {
+            layers = <SCRL>;
+            input-processors = <&zip_xy_to_scroll_mapper>, <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>, <&zip_scroll_snap>, <&zip_scroll_scaler 1 16>;
+        };
+    };
+};

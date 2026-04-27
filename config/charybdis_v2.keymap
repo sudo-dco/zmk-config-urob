@@ -1,0 +1,12 @@
+#define CONFIG_WIRELESS
+#define ZMK_BASE_LAYER(name, LT, RT, LM, RM, LB, RB, LH, RH)             \
+    ZMK_LAYER(                                                           \
+        name,                                                            \
+                LT RT                                                    \
+                LM RM                                                    \
+                LB RB                                                    \
+            &mo 6 LH RH                                                  \
+    )
+
+#include "zmk-helpers/key-labels/36.h"
+#include "base.keymap"

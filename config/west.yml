@@ -34,11 +34,14 @@ manifest:
       url-base: https://github.com/carrefinho
     - name: kot149
       url-base: https://github.com/kot149
+    - name: englmaxi
+      url-base: https://github.com/englmaxi
 
   projects:
     - name: zmk
       remote: zmkfirmware
       import: app/west.yml
+      revision: v0.3
 
     # ZMK modules
     - name: zmk-adaptive-key
@@ -77,20 +80,25 @@ manifest:
       revision: main
       path: modules/zmk/pmw3610-driver-efogdev
 
-    - name: zmk-input-processor-report-rate-limit
-      remote: badjeff
-      revision: main
-      path: modules/zmk/report-rate-limit
+    # - name: zmk-input-processor-report-rate-limit
+    #   remote: badjeff
+    #   revision: main
+    #   path: modules/zmk/report-rate-limit
 
-    - name: prospector-zmk-module
-      remote: carrefinho
-      revision: main
-      path: modules/zmk/prospector
+    # - name: prospector-zmk-module
+    #   remote: carrefinho
+    #   revision: main
+    #   path: modules/zmk/prospector
 
     - name: zmk-scroll-snap
       remote: kot149
       revision: v1
       path: modules/zmk/scroll-snap
+
+    - name: zmk-dongle-display
+      remote: englmaxi
+      revision: v0.3
+      path: modules/zmk/dongle-display
 
   self:
     path: config
