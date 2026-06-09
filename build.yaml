@@ -17,11 +17,11 @@ include:
     shield: charybdis_v2_left
   - board: nice_nano//zmk
     shield: charybdis_v2_right
-  - board: nice_nano//zmk
-    shield: settings_reset
-  - board: seeeduino_xiao_ble
-    shield: settings_reset
+  # - board: nice_nano//zmk
+  #   shield: settings_reset
+  # - board: xiao_ble//zmk
+  #   shield: settings_reset
   - board: xiao_ble//zmk
-    shield: charybdis_v2_dongle dongle_display
+    shield: charybdis_v2_dongle prospector_adapter
 # - board: nice_nano//zmk
 #   shield: charybdis_dongle dongle_display
